@@ -42,7 +42,7 @@ check_and_stop() {
         # 统计最近 20 行日志中 "sync to block" 出现的次数
         local sync_count=$(docker logs "$container_id" --tail 20 2>&1 | grep -c "sync to block")
         
-        if [ "$sync_count" -gt 15 ]; then
+        if [ "$sync_count" -gt 10 ]; then
             echo "Stopping container $container_id (sync to block count: $sync_count)..."
             docker stop "$container_id"
         else
